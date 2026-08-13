@@ -18,18 +18,28 @@ main = hakyll $ do
   match "templates/*" $
     compile templateBodyCompiler
 
-  -- Landing page.
+  -- Landing page: narrow single-column layout.
   match "content/index.md" $ do
     route (constRoute "index.html")
     compile $
       pandocCompiler
+        >>= loadAndApplyTemplate "templates/page.html" defaultContext
         >>= loadAndApplyTemplate "templates/default.html" defaultContext
         >>= relativizeUrls
+
+  -- Docs and examples share a sidebar layout.
+  let sidebarCompiler =
+        pandocCompiler
+          >>= loadAndApplyTemplate "templates/docs.html" defaultContext
+          >>= loadAndApplyTemplate "templates/default.html" defaultContext
+          >>= relativizeUrls
 
   -- Documentation pages: content/docs/foo.md -> docs/foo.html
   match "content/docs/*.md" $ do
     route (gsubRoute "content/" (const "") `composeRoutes` setExtension "html")
-    compile $
-      pandocCompiler
-        >>= loadAndApplyTemplate "templates/default.html" defaultContext
-        >>= relativizeUrls
+    compile sidebarCompiler
+
+  -- Example walkthroughs: content/examples/foo.md -> examples/foo.html
+  match "content/examples/*.md" $ do
+    route (gsubRoute "content/" (const "") `composeRoutes` setExtension "html")
+    compile sidebarCompiler
