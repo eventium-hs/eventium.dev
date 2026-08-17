@@ -38,5 +38,6 @@ The **[examples](/examples/)** section walks through three complete apps, from a
 
 ## Reference
 
-The source is on
+Once published, the API documentation will live on
+[Hackage](https://hackage.haskell.org/packages/search?terms=eventium). The source is on
 [GitHub](https://github.com/eventium-hs/eventium).

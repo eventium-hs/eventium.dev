@@ -14,7 +14,7 @@ eventium-core      -- storage-agnostic core
 eventium-sqlite    -- + a backend (or -memory / -postgresql)
 ```
 
-[Get started →](/docs/getting-started.html) · [Docs](/docs/) · [Examples](/examples/) · [GitHub](https://github.com/eventium-hs/eventium)
+[Get started →](/docs/getting-started.html) · [Docs](/docs/) · [Examples](/examples/) · [Hackage](https://hackage.haskell.org/packages/search?terms=eventium) · [GitHub](https://github.com/eventium-hs/eventium)
 
 ## Why Eventium
 
